@@ -1,2 +1,2 @@
 # supergame
-![This is a cool image](https://ga-students.slack.com/files/U02GURHPBU6/F02LH0TTSJH/wireframe.png)
+![This is a cool image](https://i.imgur.com/7SUJ314.png)
