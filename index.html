@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <h1 id="title">Pizza Time!</h1>
+    <h2 id="subtitle">"Joe's 29-minute guarantee is a promise!"</h2>
+    <main>
+        <div class="game-and-modal">
+            <canvas id="game" width="700" height="350"></canvas>
+
+            <div id="start-modal" class="modal hidden">
+                <div class="modal-content">
+                    <h3>How to Play</h3>
+                    <p id="start-content">"Spider-Man 2 is a 2004 American superhero film directed by Sam Raimi and
+                        written by Alvin Sargent from a story by Alfred Gough, Miles Millar and Michael Chabon. Based on
+                        the fictional Marvel Comics character of the same name, it is the second installment in the
+                        Spider-Man trilogy and the sequel to Spider-Man (2002), starring Tobey Maguire alongside Kirsten
+                        Dunst, James Franco, Alfred Molina, Rosemary Harris, and Donna Murphy."</p>
+                    <p id="caution">Placeholder warning about game strategy and what to avoid</p>
+                </div>
+            </div>
+            <div id="GO-modal" class="modal hidden">
+                <div class="modal-content">
+                    <h3>Game Over</h3>
+                    <p>Placeholder text</p>
+                    <p>Placeholder text</p>
+                </div>
+            </div>
+        </div>
+        <button id="start">Click to Start!</button>
+        <div class="hud-info">
+            <div class="commands">
+                <h1>Commands</h1>
+                <p>W/S - vertical movement</p>
+                <p>A/D - speed (slow down or speed up)</p>
+                <p>Space - jump</p>
+            </div>
+            <div class="score-card">
+                <h1>High Scores</h1>
+                <ol id="high-scores"></ol>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div></div>
+    </footer>
+
+
+    <script src="./js/sandbox.js"></script>
+</body>
+
+</html>

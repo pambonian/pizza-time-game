@@ -1,0 +1,83 @@
+body {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    grid grid-template-columns: 1fr;
+    background color: grey;
+}
+
+h1, h2 {
+    text-align: center;
+    /* align-items: start; */
+}
+
+main {
+    align-items:center;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: auto auto 1fr auto;
+    align-content: space-around;
+    border: 20px red;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.game-and-modal {
+    width: 710px;
+    height: 360px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0;
+    border: 5px red;
+}
+
+canvas {
+    border: 5px solid #660c2b;
+    margin 0 auto;
+}
+
+button {
+    z-index: 1;
+    font-weight: bolder;
+    background: #7C313D;
+    border-color: #7C313D;
+    color: rgb(214, 255, 214);
+    margin: 0 auto;
+    position: relative;
+}
+
+.modal {
+    width: 680px;
+    padding: 5px;
+    height: 330px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgb(124, 49, 61);
+}
+
+.modal-content {
+    padding: 2%;
+    text-align: center;
+    color: rgb(214, 255, 214);
+    line-height: 1.4em;
+    letter-spacing: .2em;
+}
+
+.hud-info {
+    width: 710px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+}
+
+.commands {
+    display: flex;
+    flex-direction: column;
+}
+
+.score-card {
+    display: flex;
+    flex-direction: column;
+}
