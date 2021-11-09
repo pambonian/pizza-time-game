@@ -31,13 +31,25 @@ function draw() {
         ctx.lineTo(700, 250);
         ctx.stroke();
 
-        //image
-        let peter = new Image();
-        let taxi = new Image();
-        function init() {
-            peter.src = 'assets/spidey-sprite.png';
-            taxi.src = 'assets/taxi.png';
-            window.requestAnimationFrame(draw);
-        }
+        //constructor class
+        class Taxi {
+            constructor(x, y, img, width, height) {
+                this.x = x;
+                this.y = y;
+                this.img = './assets/taxi.png';
+                this.width = width;
+                this.height = height;
+                this.render = function() {
+                    ctx.drawImage(taxi, 50, 50);
+                }
+            }
+        };
+        //initial screen position for taxi
+        window.addEventListener('DOMContentLoaded', function(e) {
+            taxiOne = new Taxi(40, 40, taxi.src, 20, 20);
+
+            const runGame = setInterval(gameLoop, 120);
+        });
+        console.log(Taxi);
     }
 }
