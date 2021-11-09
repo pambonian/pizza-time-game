@@ -2,6 +2,8 @@ function draw() {
     let canvas = document.getElementById('game');
     if (canvas.getContext) {
         let ctx = canvas.getContext('2d');
+        let taxii;
+        let player;
 
         //red cube
         ctx.fillStyle = 'rgb(200, 0, 0)';
@@ -32,24 +34,37 @@ function draw() {
         ctx.stroke();
 
         //constructor class
-        class Taxi {
+        class Crawler {
             constructor(x, y, img, width, height) {
                 this.x = x;
                 this.y = y;
                 this.img = './assets/taxi.png';
                 this.width = width;
                 this.height = height;
-                this.render = function() {
-                    ctx.drawImage(taxi, 50, 50);
+                this.alive = true;
+                this.render = function () {
+                    ctx.drawImage(img, 50, 50);
                 }
             }
         };
+
         //initial screen position for taxi
         window.addEventListener('DOMContentLoaded', function(e) {
-            taxiOne = new Taxi(40, 40, taxi.src, 20, 20);
+            taxii = new Crawler(40, 40, taxii.src, 20, 20);
 
             const runGame = setInterval(gameLoop, 120);
         });
-        console.log(Taxi);
+
+        //gameloop
+        function gameLoop() {
+            ctx.clearRect(0, 0, game.width, game.height);
+            if (taxii.alive) {
+                taxii.render();
+                console.log(taxii);
+            }
+        }
+        console.log(taxii);
+        taxii.render();
     }
 }
+
