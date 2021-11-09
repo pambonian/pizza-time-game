@@ -10,6 +10,14 @@ h1, h2 {
     /* align-items: start; */
 }
 
+h1 {
+    margin: 0;
+}
+
+h2 {
+    margin: 0;
+}
+
 main {
     align-items:center;
     display: grid;
@@ -47,6 +55,15 @@ button {
     position: relative;
 }
 
+#start {
+    height: 50px;
+    width: 300px;
+    font-size: 1.2em;
+    border: 4.5px solid #660c2b;
+    border-top: none;
+
+}
+
 .modal {
     width: 680px;
     padding: 5px;
@@ -67,7 +84,7 @@ button {
 
 .hud-info {
     width: 710px;
-    height: 350px;
+    height: 250px;
     display: flex;
     justify-content: center;
     border: 4px solid #660c2b;
@@ -78,7 +95,6 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px;
     border: 0px 2px 0px 0px solid #660c2b;
 }
 
@@ -87,6 +103,5 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px;
     border: 0px 0px 0px 2px solid #660c2b;
 }
