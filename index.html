@@ -10,14 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body onload="draw();">
     <h1 id="title">Pizza Time!</h1>
     <h2 id="subtitle">"Joe's 29-minute guarantee is a promise!"</h2>
     <main>
         <div class="game-and-modal">
             <canvas id="game" width="700" height="350"></canvas>
 
-            <!-- <div id="start-modal" class="modal hidden">
+            <div id="start-modal" class="modal hidden">
                 <div class="modal-content">
                     <h3>How to Play</h3>
                     <p id="start-content">"Spider-Man 2 is a 2004 American superhero film directed by Sam Raimi and
@@ -34,22 +34,22 @@
                     <p>Placeholder text</p>
                     <p>Placeholder text</p>
                 </div>
-            </div> -->
+            </div>
         </div>
         <button class="button" id="start">Click to Start!</button>
         <br>
         <div class="hud-info">
             <div class="commands">
-                <h1>Commands</h1>
+                <h3><u>Commands</u></h3>
                 <div class="control-guide">
                     <p>W/S - vertical movement</p>
                     <p>A/D - speed (slow down or speed up)</p>
                     <p>Space - jump</p>
-                    <h2 id="movement"></h2>
+                    <h3 id="movement"></h3>
                 </div>
             </div>
             <div class="score-card">
-                <h1>High Scores</h1>
+                <h3><u>High Scores</u></h3>
                 <ol id="high-scores">
                     <li></li>
                     <li></li>

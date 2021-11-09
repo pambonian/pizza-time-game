@@ -2,22 +2,24 @@ body {
     display: grid;
     grid-template-rows: auto auto 1fr auto;
     grid grid-template-columns: 1fr;
-    background-color: grey;
     font-family: "Permanent Marker";
+    background-color: #447BBE;
 }
 
 h1, h2 {
     text-align: center;
+    background-color: #B11313;
     /* align-items: start; */
 }
 
 h1 {
     margin: 0;
-    color: navy;
+    color: whitesmoke;
 }
 
 h2 {
     margin: 0;
+    padding-bottom: 20px;
 }
 
 main {
@@ -44,7 +46,8 @@ main {
 
 canvas {
     border: 5px solid #660c2b;
-    margin 0 auto;
+    margin: 20px 0px 0px 0px;
+    background-color: whitesmoke;
 }
 
 button {
@@ -93,6 +96,7 @@ button {
 }
 
 .commands {
+    background-color: whitesmoke;
     width: 355px;
     height: 305px;
     display: flex;
@@ -110,6 +114,7 @@ button {
 }
 
 .score-card {
+    background-color: whitesmoke;
     width: 355px;
     height: 305px;
     display: flex;

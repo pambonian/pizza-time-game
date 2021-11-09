@@ -1,55 +1,31 @@
-//GLOBAL DOM & VARIABLES
-let game = document.querySelector('#game');
-let movementDisplay = document.querySelector('#movement');
-let enemy;
-let player;
-let ctx = game.getContext('2d');
-ctx.fillStyle = "white";
-ctx.strokeStyle = "red";
-ctx.lineWidth = 5;
+function draw() {
+    let canvas = document.getElementById('game');
+        if (canvas.getContext) {
+            let ctx = canvas.getContext('2d');
 
-//SETUP FOR CANVAS RENDERING
-game.setAttribute("height", getComputedStyle(game)["height"]);
-game.setAttribute("width", getComputedStyle(game)["width"]);
+            ctx.fillStyle = 'rgb(200, 0, 0)';
+            ctx.fillRect (10, 10, 50, 50);
 
-//ENTITIES
-class Crawler {
-    constructor(x, y, imgFile) {
-        this.x = x;
-        this.y = y;
-        this.imgFile = './assets/taxi.png';
-        this.alive = true;
+            ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
+            ctx.fillRect(40, 70, 50, 50);
 
-        this.render = function() {
-            ctx.fillStyle = this.imgFile;
-            ctx.fillRect(this.x, this.y, this.with, this.height);
-        };
-    }
-}
+            let circle = new Path2D();
+            circle.arc(100, 35, 25, 0, 2 * Math.PI);
+            ctx.stroke(circle);
+            ctx.fill(circle);
 
-// let rambo = new Crawler(100, 100, './assets/taxi.png');
-// console.log(rambo);
-// rambo.render();
+            //path
+            ctx.beginPath();
+            ctx.strokeStyle = 'black';
+            ctx.moveTo(0, 320);
+            ctx.lineTo(700, 320);
+            ctx.stroke();
 
-//INITIAL SCREEN
-// window.addEventListener('DOMContentLoaded', function(e) {
-//     taxi = new Crawler(20, 20, './assets/taxi.png');
-//     player = new Crawler(60, 60, './assets/spidey-SpeechRecognitionResult.png');
-
-//     const runGame = setInterval(gameloop, 120);
-// })
-
-// document.addEventListener('keydown', movementHandler);
-
-
-//GAME HELPER FUNCTIONS
-//GUI
-let taxi = new Crawler(20, 40, './assets/taxi.png');
-taxi.render();
-
-
-//GAME PROCESSES
-function gameLoop() {
-    ctx.clearRect(0, 0, game.width, game.height);
-    movementDisplay.textContent = 'X:${player.x}\nY:${player.y}';
+            //path 2
+            ctx.beginPath();
+            ctx.strokeStyle = 'black';
+            ctx.moveTo(0, 250);
+            ctx.lineTo(700, 250);
+            ctx.stroke();
+        }
 }
