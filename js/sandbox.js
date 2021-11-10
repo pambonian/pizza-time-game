@@ -1,68 +1,73 @@
-
-
-//code/function below draws images on the canvas when the html body loads
-function draw() {
-    let canvas = document.getElementById('game');
+// Render the Canvas
+let canvas = document.getElementById('game');
     if (canvas.getContext) {
         let ctx = canvas.getContext('2d');
-        
+
+// Element Grabber
+let welcomeModal = document.getElementById('start-modal');
+
+// Create Classes, Objects & Definitions
         city = new Image();
-        city.src = 'assets/city.png';
-        // ctx.drawImage(city, 0, 0);
-
-        path = new Image();
-        path.src = 'assets/roadway.png'
-
+        city.src = 'assets/background.png';
         class Background {
             constructor(img) {
                 this.img = img,
-                this.render = function() {
-                    ctx.drawImage(img, 0, 0)
-                }
+                    this.render = function () {
+                        ctx.drawImage(img, 0, 0);
+                    }
             }
         }
 
         taxi = new Image();
         taxi.src = 'assets/taxi.png';
-        // ctx.drawImage(taxi, 350, 250);
-
         class Taxi {
             constructor(img) {
                 this.img = img,
-                this.render = function() {
-                    ctx.drawImage(img, 350, 250)
-                }
+                this.render = function () {
+                        ctx.drawImage(img, 350, 250);
+                    }
             }
         }
 
         peter = new Image();
         peter.src = 'assets/spidey-sprite.png';
-        // ctx.drawImage(peter, 90, 260);
-
         class Player {
-            constructor(img){
+            constructor(img) {
                 this.img = img,
-                this.render = function() {
-                    ctx.drawImage(img, 90, 260)
-                }
+                this.render = function () {
+                        ctx.drawImage(img, 90, 260);
+                    }
             }
         }
-        
-        //RENDERING
 
-        let cab = new Taxi(taxi);
-        cab.render();
-        
-        let parker = new Player(peter);
-        parker.render();
+// Onload Function (when page loads)
 
-        let street = new Background(city);
-        street.render();
-
-        let road = new 
-
-    }
+function pageload() {
+    
 }
+
+
+// Onclick Start Button 
+function start() {
+
+    //HIDE MODAL
+    welcomeModal.className = 'modal hidden';
+
+    // Side Scrolling Animation Starts
+    
+};
+
+//RENDERING
+
+// let street = new Background(city);
+// street.render();
+
+// let cab = new Taxi(taxi);
+// cab.render();
+
+// let parker = new Player(peter);
+// parker.render();
+// }
 
 //create player class (peter), look at shrek for example - needs render function
 
@@ -83,10 +88,7 @@ function draw() {
 // Need gameplay function (gameloop)
 //call render functions inside gameloop
 
-    //scroll function
-function scroll() {
-    
-}
+//scroll function
 //need a "taxi lane" function - sends taxis down the road
 //taxi collision detector
 //call scroll function only while game is being played

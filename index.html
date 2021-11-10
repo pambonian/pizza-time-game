@@ -10,25 +10,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body onload='pageload()'>
     <h1 id="title">Pizza Time!</h1>
     <h2 id="subtitle">"Joe's 29-minute guarantee is a promise!"</h2>
     <main>
         <div class="game-and-modal">
             <canvas id="game" width="700" height="350"></canvas>
 
-            <div id="start-modal" class="modal hidden">
+            <div id="start-modal" class="modal">
                 <div class="modal-content">
                     <h3>How to Play</h3>
                     <p id="start-content">"Spider-Man 2 is a 2004 American superhero film directed by Sam Raimi and
                         written by Alvin Sargent from a story by Alfred Gough, Miles Millar and Michael Chabon. Based on
                         the fictional Marvel Comics character of the same name, it is the second installment in the
-                        Spider-Man trilogy and the sequel to Spider-Man (2002), starring Tobey Maguire alongside Kirsten
-                        Dunst, James Franco, Alfred Molina, Rosemary Harris, and Donna Murphy."</p>
+                        Spider-Man trilogy and the sequel to Spider-Man (2002)."</p>
                     <p id="caution">Placeholder warning about game strategy and what to avoid</p>
-                    <img src="assets/taxi.png" alt="taxi picture">
-                    <img src="assets/spidey-sprite.png" alt="spider man" width="50" height="50">
-                    <img src="assets/city.png" alt="city">
                 </div>
             </div>
             <div id="GO-modal" class="modal hidden">
@@ -36,10 +32,15 @@
                     <h3>Game Over</h3>
                     <p>Placeholder text</p>
                     <p>Placeholder text</p>
+                    <div class="hidden">
+                        <img src="assets/background.png" alt="background">
+                        <img src="assets/spidey-sprite.png" alt="peter">
+                        <img src="assets/taxi.png" alt="taxi">
+                    </div>
                 </div>
             </div>
         </div>
-        <button class="button" id="start" onclick='draw()'>Click to Start!</button>
+        <button onclick='start()' class="button" id="start">Click to Start!</button>
         <br>
         <div class="hud-info">
             <div class="commands">
