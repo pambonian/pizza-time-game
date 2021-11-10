@@ -1,7 +1,7 @@
 body {
     display: grid;
     grid-template-rows: auto auto 1fr auto;
-    grid grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
     font-family: "Permanent Marker";
     background-color: #447BBE;
 }
