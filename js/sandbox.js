@@ -1,6 +1,6 @@
 
 
-
+//code/function below draws images on the canvas when the html body loads
 function draw() {
     let canvas = document.getElementById('game');
     if (canvas.getContext) {
@@ -8,18 +8,82 @@ function draw() {
         
         city = new Image();
         city.src = 'assets/city.png';
-        ctx.drawImage(city, 0, 0);
+        // ctx.drawImage(city, 0, 0);
+
+        class Skyline {
+            constructor(img) {
+                this.img = img,
+                this.render = function() {
+                    ctx.drawImage(img, 0, 0)
+                }
+            }
+        }
 
         taxi = new Image();
         taxi.src = 'assets/taxi.png';
-        ctx.drawImage(taxi, 350, 250);
+        // ctx.drawImage(taxi, 350, 250);
+
+        class Taxi {
+            constructor(img) {
+                this.img = img,
+                this.render = function() {
+                    ctx.drawImage(img, 350, 250)
+                }
+            }
+        }
 
         peter = new Image();
         peter.src = 'assets/spidey-sprite.png';
-        ctx.drawImage(peter, 90, 260);
+        // ctx.drawImage(peter, 90, 260);
+
+        class Player {
+            constructor(img){
+                this.img = img,
+                this.render = function() {
+                    ctx.drawImage(img, 90, 260)
+                }
+            }
+        }
+        
+        //RENDERING
+        let cab = new Taxi(taxi);
+        cab.render();
+        
+        let parker = new Player(peter);
+        parker.render();
+
+        let street = new Skyline(city);
+        street.render();
 
     }
 }
+
+//create player class (peter), look at shrek for example - needs render function
+
+// class Player {
+//     constructor(img){
+//         this.img = img,
+//         this.render = function() {
+//             ctx.drawImage(img, 90, 260)
+//         }
+//         console.log(img);
+//     }
+// }
+
+// let parker = new Player(peter);
+
+//create a new peter
+
+// Need gameplay function (gameloop)
+//call render functions inside gameloop
+
+    //scroll function
+function scroll() {
+    
+}
+//need a "taxi lane" function - sends taxis down the road
+//taxi collision detector
+//call scroll function only while game is being played
 
 
 
@@ -77,6 +141,8 @@ function draw() {
         // peter = new Image();
         // peter.src = 'assets/spidey-sprite.png';
         // ctx.drawImage(peter, 90, 260);
+
+
 
         // //constructor class
         // class Crawler {
