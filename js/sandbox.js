@@ -1,8 +1,28 @@
+
+
+
 function draw() {
     let canvas = document.getElementById('game');
     if (canvas.getContext) {
         let ctx = canvas.getContext('2d');
         
+        city = new Image();
+        city.src = 'assets/city.png';
+        ctx.drawImage(city, 0, 0);
+
+        taxi = new Image();
+        taxi.src = 'assets/taxi.png';
+        ctx.drawImage(taxi, 350, 250);
+
+        peter = new Image();
+        peter.src = 'assets/spidey-sprite.png';
+        ctx.drawImage(peter, 90, 260);
+
+    }
+}
+
+
+
         // //red cube
         // ctx.fillStyle = 'rgb(200, 0, 0)';
         // ctx.fillRect(10, 10, 50, 50);
@@ -46,13 +66,17 @@ function draw() {
         // img.src = 'assets/taxi.png';
         // document.body.appendChild(img);
 
-        taxi = new Image();
-        taxi.src = 'assets/taxi.png';
-        ctx.drawImage(taxi, 350, 170);
+        // city = new Image();
+        // city.src = 'assets/city.png';
+        // ctx.drawImage(city, 0, 0);
 
-        peter = new Image();
-        peter.src = 'assets/spidey-sprite.png';
-        ctx.drawImage(peter, 90, 180);
+        // taxi = new Image();
+        // taxi.src = 'assets/taxi.png';
+        // ctx.drawImage(taxi, 350, 250);
+
+        // peter = new Image();
+        // peter.src = 'assets/spidey-sprite.png';
+        // ctx.drawImage(peter, 90, 260);
 
         // //constructor class
         // class Crawler {
@@ -85,6 +109,6 @@ function draw() {
         // }
         // console.log(taxii);
         // taxii.render();
-    }
-}
+//     }
+// }
 
