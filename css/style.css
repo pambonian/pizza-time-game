@@ -47,7 +47,7 @@ main {
 canvas {
     border: 5px solid #660c2b;
     margin: 20px 0px 0px 0px;
-    background-color: whitesmoke;
+    background-color: lightgray;
 }
 
 button {
