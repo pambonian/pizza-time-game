@@ -10,7 +10,10 @@ function draw() {
         city.src = 'assets/city.png';
         // ctx.drawImage(city, 0, 0);
 
-        class Skyline {
+        path = new Image();
+        path.src = 'assets/roadway.png'
+
+        class Background {
             constructor(img) {
                 this.img = img,
                 this.render = function() {
@@ -46,14 +49,17 @@ function draw() {
         }
         
         //RENDERING
+
         let cab = new Taxi(taxi);
         cab.render();
         
         let parker = new Player(peter);
         parker.render();
 
-        let street = new Skyline(city);
+        let street = new Background(city);
         street.render();
+
+        let road = new 
 
     }
 }
