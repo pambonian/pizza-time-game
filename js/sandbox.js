@@ -73,7 +73,7 @@ function start() {
     setInterval(loop, 1000/60);
 };
 
-// Gameloop Function - (?) should be the onclick? Idk. Maybe?
+// Gameloop Function - (?) should be the onclick? Idk. Maybe? It's possible.
 function gameLoop () {
 
     ctx.clearRect(0, 0, game.width, game.height);
