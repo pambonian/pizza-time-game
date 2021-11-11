@@ -73,8 +73,12 @@ function start() {
     setInterval(loop, 1000/60);
 };
 
-// Gameloop Function
+// Gameloop Function - (?) should be the onclick?
+function gameLoop () {
 
+    ctx.clearRect(0, 0, game.width, game.height);
+
+}
 
 //RENDERING
 
