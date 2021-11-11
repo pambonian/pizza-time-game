@@ -2,6 +2,7 @@
 let canvas = document.getElementById('game');
     if (canvas.getContext) {
         let ctx = canvas.getContext('2d');
+    }
 
 // Element Grabber
 let welcomeModal = document.getElementById('start-modal');
@@ -55,7 +56,25 @@ function start() {
 
     // Side Scrolling Animation Starts
     
+    let x = 0;
+    let width = city.width;
+    let min = 0-width;
+    let step = 1;
+
+    function loop() {
+    let ctx = canvas.getContext('2d');
+    ctx.drawImage(city, x, 0);
+    ctx.drawImage(city, x + width, 0);
+    x -= step;
+    if (x < min) {
+        x = 0;
+        }
+    };
+    setInterval(loop, 1000/60);
 };
+
+// Gameloop Function
+
 
 //RENDERING
 
@@ -184,5 +203,4 @@ function start() {
         // console.log(taxii);
         // taxii.render();
 //     }
-// }
-
+//
