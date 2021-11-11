@@ -2,11 +2,11 @@
 let welcomeModal = document.getElementById('start-modal');
 let startButton = document.getElementById('start');
 
+
+
 // RENDER CANVAS
 let canvas = document.getElementById('game');
-    if (canvas.getContext) {
-        let ctx = canvas.getContext('2d');
-    }
+let ctx = canvas.getContext('2d');
 
 // IMAGE ASSET PULLER
         city = new Image();
@@ -24,9 +24,10 @@ let canvas = document.getElementById('game');
         taxi.src = 'assets/taxi.png';
         class Taxi {
             constructor(img) {
-                this.img = img,
+                this.img = img;
+                this.alive = true;
                 this.render = function () {
-                        ctx.drawImage(img, 350, 250);
+                        ctx.drawImage(img, 460, 205);
                     }
             }
         }
@@ -37,11 +38,20 @@ let canvas = document.getElementById('game');
             constructor(img) {
                 this.img = img,
                 this.render = function () {
-                        ctx.drawImage(img, 90, 260);
+                        ctx.drawImage(img, 60, 240);
                     }
             }
         }
 
+// DEFINE CAB AND PARKER
+let cab = new Taxi(taxi);
+let parker = new Player(peter);
+
+window.addEventListener('DOMContentLoaded', function(e) {
+
+    const runGame = setInterval(loop, 1000/60);
+
+});
 // ONLOAD FUNCTION
 
 function pageload() {
@@ -71,20 +81,29 @@ function loop() {
     let ctx = canvas.getContext('2d');
     ctx.drawImage(city, x, 0);
     ctx.drawImage(city, x + width, 0);
+    cab.render();
+    parker.render();
     
     x -= step;
     if (x < min) {
         x = 0;
         }
-    };
+};
 
-// GAMELOOP - (?) should be the onclick? Idk. Maybe? It's possible. I think. Yeah.
+// GAMELOOP FUNCTION
 function gameLoop () {
 
-    let ctx = canvas.getContext('2d');
+    
     ctx.clearRect(0, 0, game.width, game.height);
     loop();
-    setInterval(loop, 1000/60);
+
+    if (cab.alive) {
+        cab.render();
+    }
+
+    parker.render();
+    // gameOver();
+
 
 }
 
@@ -93,10 +112,10 @@ function gameLoop () {
 // let street = new Background(city);
 // street.render();
 
-// let cab = new Taxi(taxi);
+
 // cab.render();
 
-// let parker = new Player(peter);
+
 // parker.render();
 // }
 
