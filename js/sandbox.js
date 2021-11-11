@@ -2,13 +2,13 @@
 let welcomeModal = document.getElementById('start-modal');
 let startButton = document.getElementById('start');
 
-// Render the Canvas
+// RENDER CANVAS
 let canvas = document.getElementById('game');
     if (canvas.getContext) {
         let ctx = canvas.getContext('2d');
     }
 
-// Create Classes, Objects & Definitions
+// IMAGE ASSET PULLER
         city = new Image();
         city.src = 'assets/background.png';
         class Background {
@@ -42,30 +42,30 @@ let canvas = document.getElementById('game');
             }
         }
 
-// Onload Function (when page loads)
+// ONLOAD FUNCTION
 
 function pageload() {
     
 }
 
 
-// START BUTTON ONCLICK
+// START BUTTON ONCLICK FUNCTION
 function start() {
 
-    //HIDE MODAL & BUTTON
+    // Hide modal and start button
     welcomeModal.className = 'modal hidden';
     startButton.className = 'button hidden';
 
-    //START GAMELOOP
+    // Call gameloop function
     gameLoop();
 
 };
 
 // SIDE SCROLL CODE
 let x = 0;
-    let width = city.width;
-    let min = 0-width;
-    let step = 1;
+let width = city.width;
+let min = 0-width;
+let step = 1;
 
 function loop() {
     let ctx = canvas.getContext('2d');
