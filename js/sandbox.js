@@ -1,11 +1,12 @@
+// DOM & GLOBAL VARIABLES GRABBER
+let welcomeModal = document.getElementById('start-modal');
+let startButton = document.getElementById('start');
+
 // Render the Canvas
 let canvas = document.getElementById('game');
     if (canvas.getContext) {
         let ctx = canvas.getContext('2d');
     }
-
-// Element Grabber
-let welcomeModal = document.getElementById('start-modal');
 
 // Create Classes, Objects & Definitions
         city = new Image();
@@ -48,35 +49,42 @@ function pageload() {
 }
 
 
-// Onclick Start Button 
+// START BUTTON ONCLICK
 function start() {
 
-    //HIDE MODAL
+    //HIDE MODAL & BUTTON
     welcomeModal.className = 'modal hidden';
+    startButton.className = 'button hidden';
 
-    // Side Scrolling Animation Starts
-    
-    let x = 0;
+    //START GAMELOOP
+    gameLoop();
+
+};
+
+// SIDE SCROLL CODE
+let x = 0;
     let width = city.width;
     let min = 0-width;
     let step = 1;
 
-    function loop() {
+function loop() {
     let ctx = canvas.getContext('2d');
     ctx.drawImage(city, x, 0);
     ctx.drawImage(city, x + width, 0);
+    
     x -= step;
     if (x < min) {
         x = 0;
         }
     };
-    setInterval(loop, 1000/60);
-};
 
-// Gameloop Function - (?) should be the onclick? Idk. Maybe? It's possible. I think. Yeah.
+// GAMELOOP - (?) should be the onclick? Idk. Maybe? It's possible. I think. Yeah.
 function gameLoop () {
 
+    let ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, game.width, game.height);
+    loop();
+    setInterval(loop, 1000/60);
 
 }
 
