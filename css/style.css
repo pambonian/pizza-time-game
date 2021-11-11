@@ -65,17 +65,16 @@ button {
     width: 300px;
     font-size: 1.2em;
     border: 4.5px solid #660c2b;
-    border-top: none;
 
 }
 
 .modal {
-    width: 680px;
+    width: 690px;
     padding: 5px;
-    height: 318px;
+    height: 340px;
     position: absolute;
-    top: 28px;
-    left: 10px;
+    top: 25px;
+    left: 5px;
     background: rgb(124, 49, 61);
 }
 
