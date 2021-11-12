@@ -36,6 +36,7 @@ let ctx = canvas.getContext('2d');
         peter.src = 'assets/spidey-sprite.png';
         class Player {
             constructor(img) {
+                this.alive = true;
                 this.img = img,
                 this.render = function () {
                         ctx.drawImage(img, 60, 240);
@@ -98,10 +99,10 @@ function gameLoop () {
     loop();
 
     if (cab.alive) {
-        cab.render();
+        //cab.render();
     }
 
-    parker.render();
+    //parker.render();
     // gameOver();
 
 
