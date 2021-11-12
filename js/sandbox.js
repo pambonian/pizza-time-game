@@ -24,7 +24,7 @@ game.setAttribute('width', getComputedStyle(canvas)['width']);
 window.addEventListener('DOMContentLoaded', function(e) {
     
     cab = new Taxi(taxi, 460, 205);
-    parker = new Player(peter, 60, 240);
+    parker = new Player(peter, 60, 245);
 
     runGame = setInterval(gameLoop, 1000/60);
 
@@ -71,8 +71,6 @@ document.addEventListener('keydown', movementHandler);
             constructor(img, x, y) {
                 this.x = x;
                 this.y = y;
-                this.height = canvas.height;
-                this.width = canvas.width;
                 this.alive = true;
                 this.img = img,
                 this.render = function () {
@@ -88,17 +86,17 @@ function movementHandler (e) {
 
     switch(e.key) {
         case 'w':
-            parker.y - 10 >= 0 ? parker.y -=40 : null;
+            parker.y - 10 > 210 ? parker.y -=30 : null;
             console.log(parker.y);
             break;
         case 'a':
-            parker.x - 10 >= 0 ? parker.x -=50 : null;
+            parker.x - 10 >= 0 ? parker.x -=70 : null;
             break;
         case 'd':
-            parker.x + 10 <= game.width ? parker.x +=50 : null;
+            parker.x + 10 <= 570 ? parker.x +=70 : null;
             break;
         case 's':
-            parker.y + 10 <= game.height ? parker.y +=40 : null;
+            parker.y + 10 < 280 ? parker.y +=30 : null;
             break;
     }
 };
@@ -115,7 +113,7 @@ function pageload() {
 function start() {
     console.log('startfunction started');
     // Hide modal and start button
-    //welcomeModal.className = 'modal hidden';
+    welcomeModal.className = 'modal hidden';
     startButton.className = 'button hidden';
 
     // Call gameloop function
