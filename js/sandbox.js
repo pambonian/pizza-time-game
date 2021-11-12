@@ -1,12 +1,37 @@
 // DOM & GLOBAL VARIABLES GRABBER
 let welcomeModal = document.getElementById('start-modal');
 let startButton = document.getElementById('start');
-
+let movementDisplay = document.querySelector('#movement');
+let runGame;
+let parker;
+let cab;
 
 
 // RENDER CANVAS
 let canvas = document.getElementById('game');
 let ctx = canvas.getContext('2d');
+
+// SETUP CANVAS RENDERING
+
+game.setAttribute('height', getComputedStyle(canvas)['height']);
+game.setAttribute('width', getComputedStyle(canvas)['width']);
+
+// SETUP INITIAL SCREEN
+// DEFINE CAB AND PARKER
+// let cab = new Taxi(taxi);
+// let parker = new Player(peter);
+
+window.addEventListener('DOMContentLoaded', function(e) {
+    
+    cab = new Taxi(taxi, 460, 205);
+    parker = new Player(peter, 60, 240);
+
+    runGame = setInterval(gameLoop, 1000/60);
+
+});
+
+// EVENT LISTENERS
+document.addEventListener('keydown', movementHandler);
 
 // IMAGE ASSET PULLER
         city = new Image();
@@ -23,11 +48,19 @@ let ctx = canvas.getContext('2d');
         taxi = new Image();
         taxi.src = 'assets/taxi.png';
         class Taxi {
-            constructor(img) {
+            constructor(img, x, y) {
+                this.x = x;
+                this.y = y;
+                //this.height = canvas.height;
+                //this.width = canvas.width;
                 this.img = img;
                 this.alive = true;
                 this.render = function () {
                         ctx.drawImage(img, 460, 205);
+                        ctx.fillRect(this.x, this.y, this.width, this.height);
+
+                        // ctx.fillStyle = this.img;
+                        // ctx.fillRect(this.x, this.y, this.width, this.height);
                     }
             }
         }
@@ -35,24 +68,42 @@ let ctx = canvas.getContext('2d');
         peter = new Image();
         peter.src = 'assets/spidey-sprite.png';
         class Player {
-            constructor(img) {
+            constructor(img, x, y) {
+                this.x = x;
+                this.y = y;
+                this.height = canvas.height;
+                this.width = canvas.width;
                 this.alive = true;
                 this.img = img,
                 this.render = function () {
-                        ctx.drawImage(img, 60, 240);
+                        ctx.drawImage(img, this.x, this.y);
                     }
             }
         }
 
-// DEFINE CAB AND PARKER
-let cab = new Taxi(taxi);
-let parker = new Player(peter);
+// MOVEMENT HANDLER
 
-window.addEventListener('DOMContentLoaded', function(e) {
+function movementHandler (e) {
+    console.log('movement', e.key);
 
-    const runGame = setInterval(loop, 1000/60);
+    switch(e.key) {
+        case 'w':
+            parker.y - 10 >= 0 ? parker.y -=40 : null;
+            console.log(parker.y);
+            break;
+        case 'a':
+            parker.x - 10 >= 0 ? parker.x -=50 : null;
+            break;
+        case 'd':
+            parker.x + 10 <= game.width ? parker.x +=50 : null;
+            break;
+        case 's':
+            parker.y + 10 <= game.height ? parker.y +=40 : null;
+            break;
+    }
+};
 
-});
+
 // ONLOAD FUNCTION
 
 function pageload() {
@@ -62,9 +113,9 @@ function pageload() {
 
 // START BUTTON ONCLICK FUNCTION
 function start() {
-
+    console.log('startfunction started');
     // Hide modal and start button
-    welcomeModal.className = 'modal hidden';
+    //welcomeModal.className = 'modal hidden';
     startButton.className = 'button hidden';
 
     // Call gameloop function
@@ -98,8 +149,10 @@ function gameLoop () {
     ctx.clearRect(0, 0, game.width, game.height);
     loop();
 
+    movementDisplay.textContent = 'X:${parker.x}nY:${parker.y}';
+
     if (cab.alive) {
-        //cab.render();
+        cab.render();
     }
 
     //parker.render();
@@ -107,6 +160,8 @@ function gameLoop () {
 
 
 }
+
+
 
 //RENDERING
 
