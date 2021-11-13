@@ -2,6 +2,7 @@
 let welcomeModal = document.getElementById('start-modal');
 let startButton = document.getElementById('start');
 let movementDisplay = document.querySelector('#movement');
+let audio = new Audio('assets/spidertheme.mp3.mp3');
 let runGame;
 let parker;
 let cab;
@@ -115,6 +116,7 @@ function start() {
     // Hide modal and start button
     welcomeModal.className = 'modal hidden';
     startButton.className = 'button hidden';
+    audio.play();
 
     // Call gameloop function
     gameLoop();
