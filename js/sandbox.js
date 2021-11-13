@@ -44,7 +44,7 @@ document.addEventListener('keydown', movementHandler);
                     }
             }
         }
-
+        
         taxi = new Image();
         taxi.src = 'assets/taxi.png';
         class Taxi {
