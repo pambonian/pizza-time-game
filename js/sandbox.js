@@ -30,6 +30,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
     cabTwo = new Taxi(taxi, 420, 235);
     cabThree = new Taxi(taxi, 350, 270);
     parker = new Player(peter, 60, 245);
+    customer = new Pedestrian(moneyguy, 450, 245);
 
     runGame = setInterval(gameLoop, 1000/60);
 
@@ -77,6 +78,20 @@ document.addEventListener('keydown', movementHandler);
                 }
             }
         }
+
+        moneyguy = new Image();
+        moneyguy.src = 'assets/littlemoneyman.png';
+        class Pedestrian {
+            constructor(img, x, y) {
+                this.x = x;
+                this.y = y;
+                this.img = img;
+                this.render = function() {
+                    ctx.drawImage(img, this.x, this.y);
+                }
+            }
+        }
+
 
         peter = new Image();
         peter.src = 'assets/spidey-sprite.png';
@@ -172,6 +187,7 @@ function loop() {
     ctx.drawImage(city, x + width, 0);
     cabOne.render();
     parker.render();
+    customer.render();
     cabTwo.render();
     cabThree.render();
     
