@@ -26,9 +26,9 @@ canvas.setAttribute('width', getComputedStyle(canvas)['width']);
 
 window.addEventListener('DOMContentLoaded', function(e) {
     
-    // cabOne = new Taxi(taxi, 460, 205);
-    // cabTwo = new Taxi(taxi, 420, 235);
-    // cabThree = new Taxi(taxi, 350, 270);
+    cabOne = new Taxi(taxi, 700, 205);
+    cabTwo = new Taxi(taxi, 420, 235);
+    cabThree = new Taxi(taxi, 350, 270);
     parker = new Player(peter, 60, 245);
 
     runGame = setInterval(gameLoop, 1000/60);
@@ -53,10 +53,10 @@ document.addEventListener('keydown', movementHandler);
         taxi = new Image();
         taxi.src = 'assets/taxi.png';
         class Taxi {
-            constructor(img, x, y, speed, direction) {
+            constructor(img, x, y, carX1, direction) {
                 this.x = x;
+                this.carX1 = carX1;
                 this.y = y;
-                this.speed = speed;
                 this.direction = direction;
                 //this.height = canvas.height;
                 //this.width = canvas.width;
@@ -64,7 +64,12 @@ document.addEventListener('keydown', movementHandler);
                 this.alive = true;
                 this.render = function () {
                         ctx.drawImage(img, x, y);
-                        ctx.fillRect(this.x, this.y, this.width, this.height);
+                        if (x <= 700 && x > -200) {
+                            x = x - 1;
+                        } else {
+                            x = 700;
+                        }
+                        // ctx.fillRect(this.x, this.y, this.width, this.height);
                         // ctx.fillStyle = this.img;
                         // ctx.fillRect(this.x, this.y, this.width, this.height);
                         // ctx.drawImage(img, 460, 205);
@@ -165,10 +170,10 @@ function loop() {
     let ctx = canvas.getContext('2d');
     ctx.drawImage(city, x, 0);
     ctx.drawImage(city, x + width, 0);
-    // cabOne.render();
-    // cabTwo.render();
-    // cabThree.render();
+    cabOne.render();
     parker.render();
+    cabTwo.render();
+    cabThree.render();
     
     
     x -= step;
@@ -197,6 +202,26 @@ function gameLoop () {
 
 
 
+
+// function taxiAttack() {
+//     let ctx = canvas.getContext('2d');
+//     let minX=0;
+//     let maxX=280;
+//     let x=maxX;
+//     let speedX=1;
+//     let direction=1;
+//     let y=20;
+
+//     function animate(time) {
+//         ctx.clearRect(0,0,canvas.width,canvas.height);
+//         ctx.drawImage(cabOne, x, y);
+//         x += speedX * direction;
+//         if(x<minX){ x=minX; direction*=-1; }
+//         if(x>maxX){ x=maxX; direction*=-1; }
+
+//         requestAnimationFrame(animate);
+//     }
+// }
 //RENDERING
 
 // let street = new Background(city);
