@@ -5,7 +5,9 @@ let movementDisplay = document.querySelector('#movement');
 let audio = new Audio('assets/spidertheme.mp3.mp3');
 let runGame;
 let parker;
-let cab;
+let cabOne;
+let cabTwo;
+let cabThree;
 
 
 // RENDER CANVAS
@@ -14,8 +16,8 @@ let ctx = canvas.getContext('2d');
 
 // SETUP CANVAS RENDERING
 
-game.setAttribute('height', getComputedStyle(canvas)['height']);
-game.setAttribute('width', getComputedStyle(canvas)['width']);
+canvas.setAttribute('height', getComputedStyle(canvas)['height']);
+canvas.setAttribute('width', getComputedStyle(canvas)['width']);
 
 // SETUP INITIAL SCREEN
 // DEFINE CAB AND PARKER
@@ -24,7 +26,9 @@ game.setAttribute('width', getComputedStyle(canvas)['width']);
 
 window.addEventListener('DOMContentLoaded', function(e) {
     
-    cab = new Taxi(taxi, 460, 205);
+    // cabOne = new Taxi(taxi, 460, 205);
+    // cabTwo = new Taxi(taxi, 420, 235);
+    // cabThree = new Taxi(taxi, 350, 270);
     parker = new Player(peter, 60, 245);
 
     runGame = setInterval(gameLoop, 1000/60);
@@ -49,20 +53,23 @@ document.addEventListener('keydown', movementHandler);
         taxi = new Image();
         taxi.src = 'assets/taxi.png';
         class Taxi {
-            constructor(img, x, y) {
+            constructor(img, x, y, speed, direction) {
                 this.x = x;
                 this.y = y;
+                this.speed = speed;
+                this.direction = direction;
                 //this.height = canvas.height;
                 //this.width = canvas.width;
                 this.img = img;
                 this.alive = true;
                 this.render = function () {
-                        ctx.drawImage(img, 460, 205);
+                        ctx.drawImage(img, x, y);
                         ctx.fillRect(this.x, this.y, this.width, this.height);
-
                         // ctx.fillStyle = this.img;
                         // ctx.fillRect(this.x, this.y, this.width, this.height);
-                    }
+                        // ctx.drawImage(img, 460, 205);
+                        // ctx.fillRect(this.x, this.y, this.width, this.height);
+                }
             }
         }
 
@@ -133,8 +140,11 @@ function loop() {
     let ctx = canvas.getContext('2d');
     ctx.drawImage(city, x, 0);
     ctx.drawImage(city, x + width, 0);
-    cab.render();
+    // cabOne.render();
+    // cabTwo.render();
+    // cabThree.render();
     parker.render();
+    
     
     x -= step;
     if (x < min) {
@@ -151,15 +161,14 @@ function gameLoop () {
 
     movementDisplay.textContent = 'X:${parker.x}nY:${parker.y}';
 
-    if (cab.alive) {
-        cab.render();
-    }
+    
 
     //parker.render();
     // gameOver();
 
 
 }
+
 
 
 
