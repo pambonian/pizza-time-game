@@ -35,6 +35,10 @@ main {
     visibility: hidden;
 }
 
+.display {
+    display: none;
+}
+
 .game-and-modal {
     width: 710px;
     height: 360px;
@@ -88,7 +92,7 @@ button {
 
 .hud-info {
     width: 900px;
-    height: 500px;
+    height: 369px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;

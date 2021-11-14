@@ -2,7 +2,7 @@
 let welcomeModal = document.getElementById('start-modal');
 let startButton = document.getElementById('start');
 let movementDisplay = document.querySelector('#movement');
-let audio = new Audio('assets/spidertheme.mp3.mp3');
+let audio = new Audio('assets/spidertheme.mp3');
 let runGame;
 let parker;
 let cabOne;
@@ -94,20 +94,44 @@ function movementHandler (e) {
 
     switch(e.key) {
         case 'w':
+        case 'W':
             parker.y - 10 > 210 ? parker.y -=30 : null;
             console.log(parker.y);
             break;
         case 'a':
+        case 'A':
             parker.x - 10 >= 0 ? parker.x -=70 : null;
             break;
         case 'd':
+        case 'D':
             parker.x + 10 <= 570 ? parker.x +=70 : null;
             break;
         case 's':
+        case 'S':
+            parker.y + 10 < 280 ? parker.y +=30 : null;
+            break;
+        case 'ArrowUp':
+            parker.y - 10 > 210 ? parker.y -=30 : null;
+            console.log(parker.y);
+            break;
+        case 'ArrowLeft':
+            parker.x - 10 >= 0 ? parker.x -=70 : null;
+            break;
+        case 'ArrowRight':
+            parker.x + 10 <= 570 ? parker.x +=70 : null;
+            break;
+        case 'ArrowDown':
             parker.y + 10 < 280 ? parker.y +=30 : null;
             break;
     }
 };
+
+// PREVENT ARROWS AND SPACE FROM SCROLLING AROUND
+window.addEventListener("keydown", function(e) {
+    if(['Space', 'ArrowUp', 'ArrowDown', 'ArrowRight', 'ArrowLeft'].indexOf(e.code) > -1) {
+        e.preventDefault();
+    }
+}, false); 
 
 
 // ONLOAD FUNCTION
@@ -124,6 +148,7 @@ function start() {
     welcomeModal.className = 'modal hidden';
     startButton.className = 'button hidden';
     audio.play();
+    audio.loop = true;
 
     // Call gameloop function
     gameLoop();
