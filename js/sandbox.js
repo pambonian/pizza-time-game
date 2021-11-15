@@ -3,10 +3,12 @@ let welcomeModal = document.getElementById('start-modal');
 let startButton = document.getElementById('start');
 let movementDisplay = document.querySelector('#movement');
 let deliveryScore = document.getElementById('high-scores');
+let taxikills = document.getElementById('taxi-hits');
 let audio = new Audio('assets/spidertheme.mp3');
 let runGame;
 let parker;
 let score = 0;
+let crashes = 0;
 
 
 
@@ -57,13 +59,13 @@ document.addEventListener('keydown', movementHandler);
 
         let customer = new Image(); customer.src = 'assets/moneymen.png';
         custWidth = 20;
-        custHeight = 22;
+        custHeight = 35;
         custX1 = 100;
         custSX1 = 0;
-        custY1 = 255;
+        custY1 = 250;
         custX2 = 300;
         custSX2 = 15;
-        custY2 = 285;
+        custY2 = 280;
         custX3 = 550;
         custSX3 = 30;
         custY3 = 325;
@@ -115,10 +117,25 @@ document.addEventListener('keydown', movementHandler);
 
         function drawScore() {
             deliveryScore.textContent = ("Tips Collected: $" + score);
+            if (score >= 500) {
+                gameWon();
+            }
+        }
+
+        function drawCrashes() {
+            crashes ++;
+            taxikills.textContent = ("Taxis Hit: " + crashes);
+            if (crashes >= 300) {
+                gameOver();
+            }
         }
 
         function resetTips() {
             score = 0;
+        }
+
+        function resetCrashes() {
+            crashes = 0;
         }
 
 
@@ -236,7 +253,8 @@ document.addEventListener('keydown', movementHandler);
                 carsX[i] + carWidth >= parker.x &&
                 carsY[i] + carHeight >= parker.y &&
                 carsY[i] <= parker.y + parker.height) {
-                    gameOver();
+                    parker.x = 50;
+                    drawCrashes();
                 }
             }
         }
@@ -244,7 +262,6 @@ document.addEventListener('keydown', movementHandler);
 // MOVEMENT HANDLER
 
 function movementHandler (e) {
-    console.log('movement', e.key);
 
     switch(e.key) {
         case 'w':
@@ -306,6 +323,7 @@ function start() {
     audio.loop = true;
     resetParker();
     resetTips();
+    resetCrashes();
 
     // Call gameloop function
     gameLoop();
@@ -349,6 +367,23 @@ function gameLoop () {
     drawCustomers();
     drawScore();
     
+
+}
+
+function gameOver() {
+    let GOModal = document.getElementById('GO-modal');
+    GOModal.classList.remove('hidden');
+    document.getElementById('start').textContent = 'Restart';
+    document.getElementById('start').classList.remove('hidden');
+}
+
+function gameWon() {
+    let WINModal = document.getElementById('WIN-modal');
+    WINModal.classList.remove('hidden');
+    document.getElementById('start').textContent = 'Restart';
+    document.getElementById('start').classList.remove('hidden');
+}
+
     
     // hit detectors
     // detectHit(cabOne, parker);
@@ -367,7 +402,6 @@ function gameLoop () {
     // gameOver();
 
 
-}
 
 // HIT DETECTION
 // function detectHit (p1, p2) {
@@ -386,15 +420,6 @@ function gameLoop () {
 //   }
     
 // };
-
-function gameOver() {
-    let GOModal = document.getElementById('GO-modal');
-    GOModal.classList.remove('hidden');
-    document.getElementById('start').textContent = 'Restart';
-    document.getElementById('start').classList.remove('hidden');
-}
-
-
 // taxi = new Image();
         // taxi.src = 'assets/taxi.png';
         // class Taxi {
