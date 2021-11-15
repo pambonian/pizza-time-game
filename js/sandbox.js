@@ -416,13 +416,13 @@ function gameOver() {
                 
         //         //this.height = canvas.height;
         //         //this.width = canvas.width;
-        //         this.render = function () {
-        //                 ctx.drawImage(img, x, y, this.width, this.height);
-        //                 if (x <= 700 && x > -200) {
-        //                     x = x - 2;
-        //                 } else {
-        //                     x = 700;
-        //                 } 
+                // this.render = function () {
+                //         ctx.drawImage(img, x, y, this.width, this.height);
+                //         if (x <= 700 && x > -200) {
+                //             x = x - 2;
+                //         } else {
+                //             x = 700;
+                //         } 
         //                 // ctx.fillRect(this.x, this.y, this.width, this.height);
         //                 // ctx.fillStyle = this.img;
         //                 // ctx.fillRect(this.x, this.y, this.width, this.height);
