@@ -14,8 +14,9 @@ The taxis and the customers have similar collision logic - which output respecti
 
 2. Multicolor taxis: using a loop which selects a randomly colored (but otherwise identical) taxi from the sprite image asset gives the game a feeling of larger scale. But, it's just a fun little trick. Here's some of that code:
 
-function drawCars() {
 
+function drawCars() {
+    
             let carsSX = [carSX1, carSX2, carSX3, carSX4, carSX5, carSX6];
             let carsX = [carX1, carX2, carX3, carX4, carX5, carX6];
             let carsY = [carY1, carY2, carY3, carY4, carY5, carY6];
