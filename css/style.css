@@ -147,3 +147,7 @@ span {
     align-items: center;
     border: 5px solid #660c2b;
 }
+
+#high-scores {
+    justify-content: center;
+}

@@ -2,14 +2,12 @@
 let welcomeModal = document.getElementById('start-modal');
 let startButton = document.getElementById('start');
 let movementDisplay = document.querySelector('#movement');
+let deliveryScore = document.getElementById('high-scores');
 let audio = new Audio('assets/spidertheme.mp3');
 let runGame;
 let parker;
 let score = 0;
 
-function randomSpeed () {
-    return Math.floor(Math.random() * 4)
-}
 
 
 
@@ -57,25 +55,39 @@ document.addEventListener('keydown', movementHandler);
 
         
 
-        // moneyguy = new Image();
-        // moneyguy.src = 'assets/littlemoneyman.png';
-        // class Pedestrian {
-        //     constructor(img, x, y, width, height) {
-        //         this.img = img;
-        //         this.x = x;
-        //         this.y = y;
-        //         this.width = width;
-        //         this.height = height;
-        //         this.render = function() {
-        //             ctx.drawImage(img, x, y);
-        //             if (x <= 700 && x > -200) {
-        //                 x = x - 1;
-        //             } else {
-        //                 x = 700;
-        //             } 
-        //         }
-        //     }
-        // }
+        let customer = new Image(); customer.src = 'assets/moneymen.png';
+        custWidth = 15;
+        custHeight = 30;
+        custX1 = 100;
+        custSX1 = 0;
+        custY1 = 250;
+
+        function drawCustomers() {
+            ctx.drawImage(customer, custSX1, 0, 15, 30, custX1, custY1, custWidth, custHeight);
+            if (custX1 <= 700 && custX1 > -200 ) {
+                custX1 = custX1 - 2;
+            } else {
+                custX1 = 700;
+                custSX1 = (Math.floor(Math.random() * 4)) * 15;
+            }
+        }
+
+        function deliverPizza() {
+            if (custX1 <= parker.width &&
+                custX1 + custWidth >= parker.x &&
+                custY1 + parker.height >= parker.y &&
+                custY1 <= parker.y + parker.height) {
+                    score++;
+                }
+        }
+
+        function drawScore() {
+            deliveryScore.textContent = ("Tips Collected: $" + score);
+        }
+
+        function resetTips() {
+            score = 0;
+        }
 
 
         peter = new Image();
@@ -140,7 +152,7 @@ document.addEventListener('keydown', movementHandler);
         function moveCars() {
             
             if (carX1 <= 700 && carX1 > -200) {
-                carX1 = carX1 - 7;
+                carX1 = carX1 - 2;
                 } else {
                     carX1 = 700;
                     carSX1 = (Math.floor(Math.random() * 4) * 71);
@@ -261,6 +273,7 @@ function start() {
     audio.play();
     audio.loop = true;
     resetParker();
+    resetTips();
 
     // Call gameloop function
     gameLoop();
@@ -286,6 +299,7 @@ function loop() {
     
     
     runOver();
+    deliverPizza();
     
     x -= step;
     if (x < min) {
@@ -300,6 +314,9 @@ function gameLoop () {
     ctx.clearRect(0, 0, game.width, game.height);
     loop();
     drawCars();
+    drawCustomers();
+    drawScore();
+    
     
     // hit detectors
     // detectHit(cabOne, parker);
