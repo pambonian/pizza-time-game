@@ -108,7 +108,7 @@ document.addEventListener('keydown', movementHandler);
 
         function drawScore() {
             deliveryScore.textContent = ("Tips Collected: $" + score);
-            if (score >= 150) {
+            if (score >= 500) {
                 gameWon();
             }
         }
