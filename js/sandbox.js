@@ -55,64 +55,7 @@ document.addEventListener('keydown', movementHandler);
             }
         }
 
-        let customer = new Image(); customer.src = 'assets/moneymen.png';
-        let customerWidth = 15;
-        let customerHeight = 30;
-        let customerX1 = 100;
-        let customerSX1 = 0;
-        let customerY1 = 400;
-        let customerX2 = 260;
-        let customerSX2 = 15;
-        let customerY2 = 100;
-        let customerX3 = 600;
-        let customerSX3 = 30;
-        let customerY3 = 245;
-        let customerX4 = 180;
-        let customerSX4 = 45;
-        let customerY4 = 340;
-
-        function drawCustomers() {
-
-            let customersX = [customerX1, customerX2, customerX3, customerX4];
-            let customersY = [customerY1, customerY2, customerY3, customerY4];
-            let customersSX = [customerSX1, customerSX2, customerSX3, customerSX4];
-
-            for (i = 0; i < customersX.length; i++) {
-            ctx.drawImage(customer, customersSX[i], 0, 15, 30, customersX[i], customersY[i], customerWidth, customerHeight);
-            }
-        }
-
-        function deliverPizza () {
-            if (customerX1 <= parker.x + parker.width &&
-                customerX1 + parker.width >= parker.x &&
-                customerY1 + customerHeight >= parker.y &&
-                customerY1 <= parker.y + parker.height) {
-                    score += 1;
-                    console.log(score);
-                }
-        }
-
-        function moveCustomers() {
-            if (customerX1 <= 700 && customerX1 > -200) {
-                customerX1 = customerX1 - 1;
-                } else {
-                    customerX1 = 700;
-                    }
-
-            if (customerX2 <= 700 && customerX2 > -200) {
-                customerX2 = customerX1 - 3;
-                } else {
-                    customerX2 = 700;
-                    
-                    }
-
-            if (customerX3 <= 700 && customerX3 > -200) {
-                customerX3 = customerX1 - 2;
-                } else {
-                    customerX3 = 700;
-                    
-                    }
-        }
+        
 
         // moneyguy = new Image();
         // moneyguy.src = 'assets/littlemoneyman.png';
@@ -197,7 +140,7 @@ document.addEventListener('keydown', movementHandler);
         function moveCars() {
             
             if (carX1 <= 700 && carX1 > -200) {
-                carX1 = carX1 - 3;
+                carX1 = carX1 - 7;
                 } else {
                     carX1 = 700;
                     carSX1 = (Math.floor(Math.random() * 4) * 71);
@@ -205,14 +148,14 @@ document.addEventListener('keydown', movementHandler);
                     
             
             if (carX2 <= 700 && carX2 > -200) {
-                carX2 = carX2 - 3;
+                carX2 = carX2 - 4;
                 } else {
                     carX2 = 700;
                     carSX2 = (Math.floor(Math.random() * 4) * 71);
                     }
 
             if (carX3 <= 700 && carX3 > -200) {
-                carX3 = carX3 - 3;
+                carX3 = carX3 - 4;
                 } else {
                     carX3 = 700;
                     carSX3 = (Math.floor(Math.random() * 4) * 71);
@@ -226,14 +169,14 @@ document.addEventListener('keydown', movementHandler);
                     }
 
             if (carX5 <= 700 && carX5 > -200) {
-                carX5 = carX5 - 3;
+                carX5 = carX5 - 5;
                 } else {
                     carX5 = 700;
                     carSX5 = (Math.floor(Math.random() * 4) * 71);
                     }
 
             if (carX6 <= 700 && carX6 > -200) {
-                carX6 = carX6 - 3;
+                carX6 = carX6 - 6;
                 } else {
                     carX6 = 700;
                     carSX6 = (Math.floor(Math.random() * 4) * 71);
@@ -340,8 +283,8 @@ function loop() {
     // cabThree.render();
     parker.render();
     moveCars();
-    moveCustomers();
-    deliverPizza();
+    
+    
     runOver();
     
     x -= step;
@@ -357,7 +300,7 @@ function gameLoop () {
     ctx.clearRect(0, 0, game.width, game.height);
     loop();
     drawCars();
-    drawCustomers();
+    
     // hit detectors
     // detectHit(cabOne, parker);
     // let hit2 = detectHit(cabTwo, parker);
@@ -428,7 +371,7 @@ function gameOver() {
         //                 // ctx.fillRect(this.x, this.y, this.width, this.height);
         //                 // ctx.drawImage(img, 460, 205);
         //                 // ctx.fillRect(this.x, this.y, this.width, this.height);
-        //         }
+        //         } 
         //     }
         // }
 
