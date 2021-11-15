@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
     // cabTwo = new Taxi(taxi, 420, 245, 80, 67, 420, 245, 80, 67);
     // cabThree = new Taxi(taxi, 200, 280, 80, 67, 200, 280, 80, 67);
     parker = new Player(peter, 60, 240, 40, 40);
-    customer = new Pedestrian(moneyguy, 700, 245, 33, 67, 700, 245, 33, 67);
+    // customer = new Pedestrian(moneyguy, 700, 245, 33, 67, 700, 245, 33, 67);
 
     runGame = setInterval(gameLoop, 1000/60);
 
@@ -55,25 +55,84 @@ document.addEventListener('keydown', movementHandler);
             }
         }
 
-        moneyguy = new Image();
-        moneyguy.src = 'assets/littlemoneyman.png';
-        class Pedestrian {
-            constructor(img, x, y, width, height) {
-                this.img = img;
-                this.x = x;
-                this.y = y;
-                this.width = width;
-                this.height = height;
-                this.render = function() {
-                    ctx.drawImage(img, x, y);
-                    if (x <= 700 && x > -200) {
-                        x = x - 1;
-                    } else {
-                        x = 700;
-                    } 
-                }
+        let customer = new Image(); customer.src = 'assets/moneymen.png';
+        let customerWidth = 15;
+        let customerHeight = 30;
+        let customerX1 = 100;
+        let customerSX1 = 0;
+        let customerY1 = 400;
+        let customerX2 = 260;
+        let customerSX2 = 15;
+        let customerY2 = 100;
+        let customerX3 = 600;
+        let customerSX3 = 30;
+        let customerY3 = 245;
+        let customerX4 = 180;
+        let customerSX4 = 45;
+        let customerY4 = 340;
+
+        function drawCustomers() {
+
+            let customersX = [customerX1, customerX2, customerX3, customerX4];
+            let customersY = [customerY1, customerY2, customerY3, customerY4];
+            let customersSX = [customerSX1, customerSX2, customerSX3, customerSX4];
+
+            for (i = 0; i < customersX.length; i++) {
+            ctx.drawImage(customer, customersSX[i], 0, 15, 30, customersX[i], customersY[i], customerWidth, customerHeight);
             }
         }
+
+        function deliverPizza () {
+            if (customerX1 <= parker.x + parker.width &&
+                customerX1 + parker.width >= parker.x &&
+                customerY1 + customerHeight >= parker.y &&
+                customerY1 <= parker.y + parker.height) {
+                    score += 1;
+                    console.log(score);
+                }
+        }
+
+        function moveCustomers() {
+            if (customerX1 <= 700 && customerX1 > -200) {
+                customerX1 = customerX1 - 1;
+                } else {
+                    customerX1 = 700;
+                    }
+
+            if (customerX2 <= 700 && customerX2 > -200) {
+                customerX2 = customerX1 - 3;
+                } else {
+                    customerX2 = 700;
+                    
+                    }
+
+            if (customerX3 <= 700 && customerX3 > -200) {
+                customerX3 = customerX1 - 2;
+                } else {
+                    customerX3 = 700;
+                    
+                    }
+        }
+
+        // moneyguy = new Image();
+        // moneyguy.src = 'assets/littlemoneyman.png';
+        // class Pedestrian {
+        //     constructor(img, x, y, width, height) {
+        //         this.img = img;
+        //         this.x = x;
+        //         this.y = y;
+        //         this.width = width;
+        //         this.height = height;
+        //         this.render = function() {
+        //             ctx.drawImage(img, x, y);
+        //             if (x <= 700 && x > -200) {
+        //                 x = x - 1;
+        //             } else {
+        //                 x = 700;
+        //             } 
+        //         }
+        //     }
+        // }
 
 
         peter = new Image();
@@ -91,35 +150,99 @@ document.addEventListener('keydown', movementHandler);
             }
         }
 
+        function resetParker () {
+            parker.x = 50;
+            parker.y = 277;
+        }
+
         let car = new Image(); car.src = "assets/spritesheet.png";
+        let carWidth = 60;
+        let carHeight = 30;
         let carX1 = 100;
         let carSX1 = 0;
         let carY1 = 320;
-        let carWidth = 60;
-        let carHeight = 30;
-        let carX2 = 540;
+        let carX2 = 430;
         let carSX2 = 71;
         let carY2 = 320;
+        let carX3 = 650;
+        let carSX3 = 142;
+        let carY3 = 282;
+        let carX4 = 230;
+        let carSX4 = 213;
+        let carY4 = 282;
+        let carX5 = 0;
+        let carSX5 = 0;
+        let carY5 = 245;
+        let carX6 = 430;
+        let carSX6 = 71;
+        let carY6 = 245;
+        // let carX7 = 650;
+        // let carSX7 = 71;
+        // let carY7 = 200;
+        // let carX8 = 250;
+        // let carSX8 = 142;
+        // let carY8 = 200;
+
         function drawCars() {
-            ctx.drawImage(car, carSX1, 0, 71, 56, carX1, carY1, carWidth, carHeight);
+
+            let carsSX = [carSX1, carSX2, carSX3, carSX4, carSX5, carSX6];
+            let carsX = [carX1, carX2, carX3, carX4, carX5, carX6];
+            let carsY = [carY1, carY2, carY3, carY4, carY5, carY6];
+
+            for (i=0; i < carsX.length; i++) {
+                ctx.drawImage(car, carsSX[i], 0, 71, 56, carsX[i], carsY[i], carWidth, carHeight);
+            }
+        }
+
+        function moveCars() {
+            
             if (carX1 <= 700 && carX1 > -200) {
-                carX1 = carX1 - 2;
+                carX1 = carX1 - 3;
                 } else {
                     carX1 = 700;
                     carSX1 = (Math.floor(Math.random() * 4) * 71);
                     }
                     
-            ctx.drawImage(car, carSX2, 0, 71, 56, carX2, carY2, carWidth, carHeight);
+            
             if (carX2 <= 700 && carX2 > -200) {
-                carX2 = carX2 - 2;
+                carX2 = carX2 - 3;
                 } else {
                     carX2 = 700;
                     carSX2 = (Math.floor(Math.random() * 4) * 71);
                     }
+
+            if (carX3 <= 700 && carX3 > -200) {
+                carX3 = carX3 - 3;
+                } else {
+                    carX3 = 700;
+                    carSX3 = (Math.floor(Math.random() * 4) * 71);
+                    }
+            
+            if (carX4 <= 700 && carX4 > -200) {
+                carX4 = carX4 - 3;
+                } else {
+                    carX4 = 700;
+                    carSX4 = (Math.floor(Math.random() * 4) * 71);
+                    }
+
+            if (carX5 <= 700 && carX5 > -200) {
+                carX5 = carX5 - 3;
+                } else {
+                    carX5 = 700;
+                    carSX5 = (Math.floor(Math.random() * 4) * 71);
+                    }
+
+            if (carX6 <= 700 && carX6 > -200) {
+                carX6 = carX6 - 3;
+                } else {
+                    carX6 = 700;
+                    carSX6 = (Math.floor(Math.random() * 4) * 71);
+                    }
         }
+
         function runOver () {
-            let carsX = [carX1, carX2];
-            let carsY = [carY1, carY2];
+            let carsX = [carX1, carX2, carX3, carX4, carX5, carX6];
+            let carsY = [carY1, carY2, carY3, carY4, carY5, carY6];
 
             for (i = 0; i < carsX.length; i++) {
             if (carsX[i] <= parker.x + parker.width &&
@@ -194,6 +317,7 @@ function start() {
     document.getElementById('GO-modal').className = 'modal hidden';
     audio.play();
     audio.loop = true;
+    resetParker();
 
     // Call gameloop function
     gameLoop();
@@ -210,12 +334,14 @@ function loop() {
     let ctx = canvas.getContext('2d');
     ctx.drawImage(city, x, 0);
     ctx.drawImage(city, x + width, 0);
-    customer.render();
+    // customer.render();
     // cabOne.render();
     // cabTwo.render();
     // cabThree.render();
     parker.render();
-    drawCars();
+    moveCars();
+    moveCustomers();
+    deliverPizza();
     runOver();
     
     x -= step;
@@ -231,6 +357,7 @@ function gameLoop () {
     ctx.clearRect(0, 0, game.width, game.height);
     loop();
     drawCars();
+    drawCustomers();
     // hit detectors
     // detectHit(cabOne, parker);
     // let hit2 = detectHit(cabTwo, parker);

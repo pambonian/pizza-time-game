@@ -22,6 +22,19 @@ h2 {
     padding-bottom: 20px;
 }
 
+h4 {
+    text-align: center;
+}
+
+#creator {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+    height: 200px;
+    justify-content: flex-end;
+    width: 100%;
+}
+
 main {
     align-items:center;
     display: grid;
