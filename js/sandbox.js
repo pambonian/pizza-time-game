@@ -8,6 +8,12 @@ let parker;
 let cabOne;
 let cabTwo;
 let cabThree;
+let score = 0;
+
+function randomSpeed () {
+    return Math.floor(Math.random() * 4)
+}
+
 
 
 // RENDER CANVAS
@@ -26,13 +32,14 @@ canvas.setAttribute('width', getComputedStyle(canvas)['width']);
 
 window.addEventListener('DOMContentLoaded', function(e) {
     
-    cabOne = new Taxi(taxi, 700, 205);
+    cabOne = new Taxi(taxi, 700, 205, 160, 81);
     cabTwo = new Taxi(taxi, 420, 235);
-    cabThree = new Taxi(taxi, 350, 270);
-    parker = new Player(peter, 60, 245);
-    customer = new Pedestrian(moneyguy, 450, 245);
+    cabThree = new Taxi(taxi, 200, 270);
+    parker = new Player(peter, 60, 245, 80, 67);
+    customer = new Pedestrian(moneyguy, 700, 245);
 
     runGame = setInterval(gameLoop, 1000/60);
+    
 
 });
 
@@ -54,10 +61,12 @@ document.addEventListener('keydown', movementHandler);
         taxi = new Image();
         taxi.src = 'assets/taxi.png';
         class Taxi {
-            constructor(img, x, y, carX1, direction) {
+            constructor(img, x, y, width, height, speed, direction) {
                 this.x = x;
-                this.carX1 = carX1;
+                this.width = width;
+                this.height = height;
                 this.y = y;
+                this.speed = speed;
                 this.direction = direction;
                 //this.height = canvas.height;
                 //this.width = canvas.width;
@@ -65,11 +74,12 @@ document.addEventListener('keydown', movementHandler);
                 this.alive = true;
                 this.render = function () {
                         ctx.drawImage(img, x, y);
+                        speed = 2;
                         if (x <= 700 && x > -200) {
-                            x = x - 1;
+                            x = x - speed;
                         } else {
                             x = 700;
-                        }
+                        } 
                         // ctx.fillRect(this.x, this.y, this.width, this.height);
                         // ctx.fillStyle = this.img;
                         // ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -87,7 +97,12 @@ document.addEventListener('keydown', movementHandler);
                 this.y = y;
                 this.img = img;
                 this.render = function() {
-                    ctx.drawImage(img, this.x, this.y);
+                    ctx.drawImage(img, x, y);
+                    if (x <= 700 && x > -200) {
+                        x = x - 1;
+                    } else {
+                        x = 700;
+                    } 
                 }
             }
         }
@@ -96,9 +111,11 @@ document.addEventListener('keydown', movementHandler);
         peter = new Image();
         peter.src = 'assets/spidey-sprite.png';
         class Player {
-            constructor(img, x, y) {
+            constructor(img, x, y, width, height) {
                 this.x = x;
                 this.y = y;
+                this.width = width;
+                this.height = height;
                 this.alive = true;
                 this.img = img,
                 this.render = function () {
@@ -191,7 +208,6 @@ function loop() {
     cabTwo.render();
     cabThree.render();
     
-    
     x -= step;
     if (x < min) {
         x = 0;
@@ -205,6 +221,15 @@ function gameLoop () {
     ctx.clearRect(0, 0, game.width, game.height);
     loop();
 
+    // hit detectors
+    let hit1 = detectHit(cabOne, parker);
+    let hit2 = detectHit(cabTwo, parker);
+    let hit3 = detectHit(cabThree, parker);
+
+    // deliver detectors
+    let delivery = detectHit(customer, parker);
+    
+
     movementDisplay.textContent = 'X:${parker.x}nY:${parker.y}';
 
     
@@ -215,7 +240,31 @@ function gameLoop () {
 
 }
 
+// HIT DETECTION
+function detectHit(p1, p2) {
 
+    // console.log(p1.x < p2.x + p2.width);
+    // console.log(p1.x + p1.width > p2.x);
+    // console.log(p1.y < p2.y + p2.height);
+    // console.log(p1.height + p1.y > p2.y);
+
+    let hitTest =
+        p1.x < p2.x + p2.width &&
+        p1.x + p1.width > p2.x &&
+        p1.y < p2.y + p2.height &&
+        p1.height + p1.y > p2.y;
+    
+    if (hitTest) {
+        return true;
+    }
+};
+
+function gameOver() {
+    let GOModal = document.getElementById('GO-modal');
+    GOModal.classList.remove('hidden');
+    document.getElementById('start').textContent = 'Restart';
+    document.getElementById('start').classList.remove('hidden');
+}
 
 
 
