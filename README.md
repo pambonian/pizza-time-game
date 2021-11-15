@@ -29,3 +29,65 @@ function drawCars() {
 and the image itself:
 
 ![This is the sprites of the taxis](assets/spritesheet.png)
+
+## Challenges
+The biggest problems I faced were manipulating images on the canvas, and creating the collision systems to track their movements.
+
+Rendering the images was a major hurdle, and ultimately I gave up on my initial plan to use my limited experience with objects and constructors (at least the way I was familiar with them), and started over again with the approach you see in the final game.
+
+```
+let car = new Image(); car.src = "assets/spritesheet.png";
+        let carWidth = 60;
+        let carHeight = 30;
+        let carX1 = 100;
+        let carSX1 = 0;
+        let carY1 = 320;
+        let carX2 = 430;
+        let carSX2 = 71;
+        let carY2 = 320;
+        let carX3 = 650;
+        let carSX3 = 142;
+        let carY3 = 282;
+        let carX4 = 230;
+        let carSX4 = 213;
+        let carY4 = 282;
+        let carX5 = 0;
+        let carSX5 = 0;
+        let carY5 = 245;
+        let carX6 = 430;
+        let carSX6 = 71;
+        let carY6 = 245;
+```
+I'm sure there is a more efficient way to organize these properties and values, but I was at the point where I was willing to suffer through some sweaty keyboard action in order to make this happen.
+
+Creating the collision systems was subsequently much easier - as I was familiar with the values I was working with after manually composing the values like those you see above.
+
+```
+function deliverPizza() {
+            if (custX1 <= parker.width &&
+                custX1 + custWidth >= parker.x &&
+                custY1 + parker.height >= parker.y &&
+                custY1 <= parker.y + parker.height) {
+                    score++;
+```
+
+```
+function runOver () {
+            let carsX = [carX1, carX2, carX3, carX4, carX5, carX6];
+            let carsY = [carY1, carY2, carY3, carY4, carY5, carY6];
+
+            for (i = 0; i < carsX.length; i++) {
+            if (carsX[i] <= parker.x + parker.width &&
+                carsX[i] + carWidth >= parker.x &&
+                carsY[i] + carHeight >= parker.y &&
+                carsY[i] <= parker.y + parker.height) {
+                    parker.x = 50;
+                    drawCrashes();
+                }
+            }
+        }
+```
+
+I really enjoyed making this project, and I learned so many new things, including how much I didn't know! 
+
+I look forward to making more projects like this and I hope you enjoy playing the game!
