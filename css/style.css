@@ -95,6 +95,10 @@ button {
     background: rgb(124, 49, 61);
 }
 
+#WIN-modal {
+    background-color: gold;
+}
+
 #GO-modal {
     background-image: url("https://i.imgur.com/NPrlGER.jpg");
     background-size: cover;
