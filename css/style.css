@@ -82,6 +82,15 @@ button {
     background: rgb(124, 49, 61);
 }
 
+#GO-modal {
+    background-image: url('/Users/patrickbrennan/Desktop/SEI_1025/unit-1/deliveries/pizza-time-game/assets/garbage.jpeg');
+    background-size: cover;
+}
+
+span {
+    background-color: darkred;
+}
+
 .modal-content {
     padding: 2%;
     text-align: center;
