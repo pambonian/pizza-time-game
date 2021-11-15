@@ -5,9 +5,6 @@ let movementDisplay = document.querySelector('#movement');
 let audio = new Audio('assets/spidertheme.mp3');
 let runGame;
 let parker;
-let cabOne;
-let cabTwo;
-let cabThree;
 let score = 0;
 
 function randomSpeed () {
@@ -32,10 +29,10 @@ canvas.setAttribute('width', getComputedStyle(canvas)['width']);
 
 window.addEventListener('DOMContentLoaded', function(e) {
     
-    cabOne = new Taxi(taxi, 700, 215, 80, 67, 700, 215, 80, 67);
-    cabTwo = new Taxi(taxi, 420, 245, 80, 67, 420, 245, 80, 67);
-    cabThree = new Taxi(taxi, 200, 280, 80, 67, 200, 280, 80, 67);
-    parker = new Player(peter, 60, 245, 80, 67, 60, 245, 80, 67);
+    // cabOne = new Taxi(taxi, 700, 215, 80, 67, 700, 215, 80, 67);
+    // cabTwo = new Taxi(taxi, 420, 245, 80, 67, 420, 245, 80, 67);
+    // cabThree = new Taxi(taxi, 200, 280, 80, 67, 200, 280, 80, 67);
+    parker = new Player(peter, 60, 240, 40, 40);
     customer = new Pedestrian(moneyguy, 700, 245, 33, 67, 700, 245, 33, 67);
 
     runGame = setInterval(gameLoop, 1000/60);
@@ -55,35 +52,6 @@ document.addEventListener('keydown', movementHandler);
                     this.render = function () {
                         ctx.drawImage(img, 0, 0);
                     }
-            }
-        }
-        
-        taxi = new Image();
-        taxi.src = 'assets/taxi.png';
-        class Taxi {
-            constructor(img, x, y, width, height) {
-                this.img = img;
-                this.x = x;
-                this.y = y;
-                this.width = width;
-                this.height = height;
-                
-                
-                //this.height = canvas.height;
-                //this.width = canvas.width;
-                this.render = function () {
-                        ctx.drawImage(img, x, y, this.width, this.height);
-                        if (x <= 700 && x > -200) {
-                            x = x - 2;
-                        } else {
-                            x = 700;
-                        } 
-                        // ctx.fillRect(this.x, this.y, this.width, this.height);
-                        // ctx.fillStyle = this.img;
-                        // ctx.fillRect(this.x, this.y, this.width, this.height);
-                        // ctx.drawImage(img, 460, 205);
-                        // ctx.fillRect(this.x, this.y, this.width, this.height);
-                }
             }
         }
 
@@ -123,6 +91,19 @@ document.addEventListener('keydown', movementHandler);
             }
         }
 
+        let car = new Image(); car.src = "assets/spritesheet.png";
+        let carX1 = 100;
+        let carSX1 = 0;
+        function drawCars() {
+            ctx.drawImage(car, carSX1, 0, 71, 56, carX1, 278, 71, 36);
+            if (carX1 <= 700 && carX1 > -200) {
+                carX1 = carX1 - 2;
+                } else {
+                    carX1 = 700;
+                    carSX1 = (Math.floor(Math.random() * 4) * 71);
+                    } 
+        }
+
 // MOVEMENT HANDLER
 
 function movementHandler (e) {
@@ -131,7 +112,7 @@ function movementHandler (e) {
     switch(e.key) {
         case 'w':
         case 'W':
-            parker.y - 10 > 210 ? parker.y -=30 : null;
+            parker.y - 10 > 230 ? parker.y -=37 : null;
             console.log(parker.y);
             break;
         case 'a':
@@ -144,10 +125,10 @@ function movementHandler (e) {
             break;
         case 's':
         case 'S':
-            parker.y + 10 < 280 ? parker.y +=30 : null;
+            parker.y + 10 < 300 ? parker.y +=37 : null;
             break;
         case 'ArrowUp':
-            parker.y - 10 > 210 ? parker.y -=30 : null;
+            parker.y - 10 > 230 ? parker.y -=37 : null;
             console.log(parker.y);
             break;
         case 'ArrowLeft':
@@ -157,7 +138,7 @@ function movementHandler (e) {
             parker.x + 10 <= 570 ? parker.x +=70 : null;
             break;
         case 'ArrowDown':
-            parker.y + 10 < 280 ? parker.y +=30 : null;
+            parker.y + 10 < 300 ? parker.y +=37 : null;
             break;
     }
 };
@@ -169,11 +150,6 @@ window.addEventListener("keydown", function(e) {
     }
 }, false); 
 
-
-// UPDATE DROPZONE INFO WITH SPRITE MOVEMENT
-function track() {
-    let 
-}
 
 // ONLOAD FUNCTION
 
@@ -208,10 +184,11 @@ function loop() {
     ctx.drawImage(city, x, 0);
     ctx.drawImage(city, x + width, 0);
     customer.render();
-    cabOne.render();
-    cabTwo.render();
-    cabThree.render();
+    // cabOne.render();
+    // cabTwo.render();
+    // cabThree.render();
     parker.render();
+    drawCars();
     
     x -= step;
     if (x < min) {
@@ -225,9 +202,9 @@ function gameLoop () {
     
     ctx.clearRect(0, 0, game.width, game.height);
     loop();
-
+    drawCars();
     // hit detectors
-    detectHit(cabOne, parker);
+    // detectHit(cabOne, parker);
     // let hit2 = detectHit(cabTwo, parker);
     // let hit3 = detectHit(cabThree, parker);
 
@@ -235,7 +212,7 @@ function gameLoop () {
     // let delivery = detectHit(customer, parker);
     
 
-    movementDisplay.textContent = 'X:${parker.x}nY:${parker.y}';
+    // movementDisplay.textContent = 'X:${parker.x}nY:${parker.y}';
 
     
 
@@ -246,20 +223,20 @@ function gameLoop () {
 }
 
 // HIT DETECTION
-function detectHit (p1, p2) {
-    if (p1.x < p2.x + p2.width &&
-        p1.x + p1.width > p2.x &&
-        p1.y < p2.y + p2.height &&
-        p1.y + p1.height > p2.y
-    ){
-        // collision detected
-        console.log('Hit!');
-        gameOver();
-    } else {
-        // no collision detected
-        console.log('No hit detected');
-    }
-  }
+// function detectHit (p1, p2) {
+//     if (p1.x < p2.x + p2.width &&
+//         p1.x + p1.width > p2.x &&
+//         p1.y < p2.y + p2.height &&
+//         p1.y + p1.height > p2.y
+//     ){
+//         // collision detected
+//         console.log('Hit!');
+//         gameOver();
+//     } else {
+//         // no collision detected
+//         console.log('No hit detected');
+//     }
+//   }
     
 // };
 
@@ -269,6 +246,37 @@ function gameOver() {
     document.getElementById('start').textContent = 'Restart';
     document.getElementById('start').classList.remove('hidden');
 }
+
+
+// taxi = new Image();
+        // taxi.src = 'assets/taxi.png';
+        // class Taxi {
+        //     constructor(img, x, y, width, height) {
+        //         this.img = img;
+        //         this.x = x;
+        //         this.y = y;
+        //         this.width = width;
+        //         this.height = height;
+                
+                
+        //         //this.height = canvas.height;
+        //         //this.width = canvas.width;
+        //         this.render = function () {
+        //                 ctx.drawImage(img, x, y, this.width, this.height);
+        //                 if (x <= 700 && x > -200) {
+        //                     x = x - 2;
+        //                 } else {
+        //                     x = 700;
+        //                 } 
+        //                 // ctx.fillRect(this.x, this.y, this.width, this.height);
+        //                 // ctx.fillStyle = this.img;
+        //                 // ctx.fillRect(this.x, this.y, this.width, this.height);
+        //                 // ctx.drawImage(img, 460, 205);
+        //                 // ctx.fillRect(this.x, this.y, this.width, this.height);
+        //         }
+        //     }
+        // }
+
 
 // function detectHit (p1, p2) {
     //     // console.log(p1.y + p1.height > (p2.y + 65));
