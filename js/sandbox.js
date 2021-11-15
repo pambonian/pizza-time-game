@@ -94,14 +94,41 @@ document.addEventListener('keydown', movementHandler);
         let car = new Image(); car.src = "assets/spritesheet.png";
         let carX1 = 100;
         let carSX1 = 0;
+        let carY1 = 320;
+        let carWidth = 60;
+        let carHeight = 30;
+        let carX2 = 540;
+        let carSX2 = 71;
+        let carY2 = 320;
         function drawCars() {
-            ctx.drawImage(car, carSX1, 0, 71, 56, carX1, 278, 71, 36);
+            ctx.drawImage(car, carSX1, 0, 71, 56, carX1, carY1, carWidth, carHeight);
             if (carX1 <= 700 && carX1 > -200) {
                 carX1 = carX1 - 2;
                 } else {
                     carX1 = 700;
                     carSX1 = (Math.floor(Math.random() * 4) * 71);
-                    } 
+                    }
+                    
+            ctx.drawImage(car, carSX2, 0, 71, 56, carX2, carY2, carWidth, carHeight);
+            if (carX2 <= 700 && carX2 > -200) {
+                carX2 = carX2 - 2;
+                } else {
+                    carX2 = 700;
+                    carSX2 = (Math.floor(Math.random() * 4) * 71);
+                    }
+        }
+        function runOver () {
+            let carsX = [carX1, carX2];
+            let carsY = [carY1, carY2];
+
+            for (i = 0; i < carsX.length; i++) {
+            if (carsX[i] <= parker.x + parker.width &&
+                carsX[i] + carWidth >= parker.x &&
+                carsY[i] + carHeight >= parker.y &&
+                carsY[i] <= parker.y + parker.height) {
+                    gameOver();
+                }
+            }
         }
 
 // MOVEMENT HANDLER
@@ -189,6 +216,7 @@ function loop() {
     // cabThree.render();
     parker.render();
     drawCars();
+    runOver();
     
     x -= step;
     if (x < min) {
