@@ -56,11 +56,17 @@ document.addEventListener('keydown', movementHandler);
         
 
         let customer = new Image(); customer.src = 'assets/moneymen.png';
-        custWidth = 15;
-        custHeight = 30;
+        custWidth = 20;
+        custHeight = 22;
         custX1 = 100;
         custSX1 = 0;
-        custY1 = 250;
+        custY1 = 255;
+        custX2 = 300;
+        custSX2 = 15;
+        custY2 = 285;
+        custX3 = 550;
+        custSX3 = 30;
+        custY3 = 325;
 
         function drawCustomers() {
             ctx.drawImage(customer, custSX1, 0, 15, 30, custX1, custY1, custWidth, custHeight);
@@ -70,6 +76,22 @@ document.addEventListener('keydown', movementHandler);
                 custX1 = 700;
                 custSX1 = (Math.floor(Math.random() * 4)) * 15;
             }
+
+            ctx.drawImage(customer, custSX2, 0, 15, 30, custX2, custY2, custWidth, custHeight);
+            if (custX2 <= 700 && custX2 > -200 ) {
+                custX2 = custX2 - 2;
+            } else {
+                custX2 = 700;
+                custSX2 = (Math.floor(Math.random() * 4)) * 15;
+            }
+
+            ctx.drawImage(customer, custSX3, 0, 15, 30, custX3, custY3, custWidth, custHeight);
+            if (custX3 <= 700 && custX3 > -200 ) {
+                custX3 = custX3 - 2;
+            } else {
+                custX3 = 700;
+                custSX3 = (Math.floor(Math.random() * 4)) * 15;
+            }
         }
 
         function deliverPizza() {
@@ -78,7 +100,17 @@ document.addEventListener('keydown', movementHandler);
                 custY1 + parker.height >= parker.y &&
                 custY1 <= parker.y + parker.height) {
                     score++;
-                }
+                } else if (custX2 <= parker.width &&
+                    custX2 + custWidth >= parker.x &&
+                    custY2 + parker.height >= parker.y &&
+                    custY2 <= parker.y + parker.height) {
+                        score++;
+                    } else if (custX3 <= parker.width &&
+                        custX3 + custWidth >= parker.x &&
+                        custY3 + parker.height >= parker.y &&
+                        custY3 <= parker.y + parker.height) {
+                            score++;
+                        }
         }
 
         function drawScore() {
